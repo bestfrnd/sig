@@ -1,0 +1,21 @@
+abstract class Notification
+
+case class Email(email:String,sub:String,body:String) extends Notification
+case class SMS(number:String,msg:String)  extends Notification
+
+object pattern{
+
+def showNotification(notification:Notification):String={
+  notification match{
+    case Email(email,sub,_)=>s"You got an email from $email with title $sub"
+    case SMS(number,msg)=>s"You got an SMS from $number! Message:$msg"
+  }
+}
+
+def main(arge:Array[String]){
+  val somemsg=SMS("8073735218","Are you there?")
+  val someemail=Email("Bhavana@gmail.com","Big Data","R programming,Scala,Spark")
+  println(showNotification(somemsg))
+  println(showNotification(someemail))
+}
+}
